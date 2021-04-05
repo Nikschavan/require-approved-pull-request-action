@@ -4469,13 +4469,7 @@ async function run() {
       import_core.setFailed(`Invalid input count of input.minimum_approvals`);
     }
     const token = import_core.getInput("token");
-    console.log(`Token is - ${token}`);
-    console.log(minimum_approvals);
-    try {
-      var kit = import_github.getOctokit(token);
-    } catch (e) {
-      console.log(e);
-    }
+    const kit = import_github.getOctokit(token);
     const reviews = await kit.pulls.listReviews({
       ...import_github.context.repo,
       pull_number: import_github.context.payload.pull_request.number
