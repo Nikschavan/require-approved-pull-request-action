@@ -14,7 +14,16 @@ async function run() {
         }
 
         const token = getInput("token");
-        const kit = getOctokit(token);
+
+        console.log( `Token is - ${token}` );
+        console.log( minimum_approvals );
+
+        try {
+            var kit = getOctokit(token);
+        } catch (e) {
+            console.log(e)
+        }
+
         const reviews = await kit.pulls.listReviews({
             ...context.repo,
             pull_number: context.payload.pull_request.number
